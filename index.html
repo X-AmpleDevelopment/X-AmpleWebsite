@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <link rel="shortcut icon" href="assets/images/botlogo.svg" type="image/x-icon">
   <meta name="description" content="Welcome to X-Ample, your versatile Discord bot!">
-  
   <title>X-Ample | Home</title>
   <link rel="stylesheet" href="assets/font-awesome-brands/css/fontawesome.min.css">
   <link rel="stylesheet" href="assets/font-awesome-brands/css/brands.min.css">
@@ -24,9 +23,7 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"></noscript>
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css">
   <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
-  
-  <!-- Tailwind CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
   
   <style>
     /* Optional custom styles */
@@ -83,28 +80,24 @@
   </div>
 
   <!-- Custom JavaScript for Tailwind modal functionality -->
-  <script>
-    function openModal() {
-        document.getElementById('passwordModal').classList.remove('hidden');
-    }
+  <script defer>
+   function openModal() {
+    console.log("openModal called");
+    document.getElementById('passwordModal').classList.remove('hidden');
+}
 
-    function closeModal() {
-        document.getElementById('passwordModal').classList.add('hidden');
+function verifyPassword(event) {
+    event.preventDefault();
+    var password = document.getElementById('password').value;
+    console.log("Password entered: ", password);
+    if (password === 'Yamool2003!') {
+        console.log("Password correct");
+        window.location.href = '/pages/license-generator';
+    } else {
+        alert('Incorrect password. Please try again.');
     }
-
-    function verifyPassword(event) {
-        event.preventDefault();
-        var password = document.getElementById('password').value;
-        // Replace 'your_password' with your actual password
-        if (password === 'Yamool2003!') {
-            // Redirect to the desired webpage
-            window.location.href = '/pages/license-generator';
-        } else {
-            alert('Incorrect password. Please try again.');
-        }
-    }
-
-    // Close modal when clicking outside of it
+}
+  
     window.onclick = function(event) {
         const modal = document.getElementById('passwordModal');
         if (event.target === modal) {
@@ -136,8 +129,9 @@
   <section data-bs-version="5.1" class="features5 cid-u4J8g3ytux" id="features05-2">
     <div class="container">
       <div class="row mb-5 justify-content-center">
-        <div class="col-12 content-head">
-          <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-5"><strong>Features of our Bots</strong></h3>
+        <div class="col-md-12">
+          <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+            <strong>Our Bots</strong></h3>
         </div>
       </div>
       <div class="row">

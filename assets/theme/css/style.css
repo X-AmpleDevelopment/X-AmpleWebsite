@@ -3,6 +3,16 @@ section {
   background-color: #ffffff;
 }
 
+#passwordModal .modal-dialog {
+    max-width: 600px; /* Adjust width as needed */
+    max-height: 80vh; /* Adjust height as needed */
+}
+
+#passwordModal .modal-body {
+    max-height: 400px; /* Adjust body height as needed */
+    overflow-y: auto; /* Enable scrolling if content exceeds max-height */
+}
+
 body {
   font-style: normal;
   line-height: 1.5;
