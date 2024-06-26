@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>License Key Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .license-key {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 18px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #f5f5f5;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>License Key Generator</h1>
+    <div class="form-group">
+      <label for="keyLength">Key Length:</label>
+      <input type="number" id="keyLength" min="20" max="20" value="20">
+    </div>
+    <div class="form-group">
+      <label for="keyCount">Number of Keys:</label>
+      <input type="number" id="keyCount" min="20" max="20" value="20">
+    </div>
+    <button onclick="generateAndSendKeys()">Generate and Send Keys</button>
+    <button onclick="returnHome()">Return Home</button>
+
+    <div id="generatedKeys"></div>
+  </div>
+
+  <script>
+    function returnHome() {
+        // Redirect to the index page
+        window.location.href = '/index';
+    }
+</script>
+
+  <script>
+    async function generateAndSendKeys() {
+      const keyLength = parseInt(document.getElementById('keyLength').value);
+      const keyCount = parseInt(document.getElementById('keyCount').value);
+      const keysContainer = document.getElementById('generatedKeys');
+      keysContainer.innerHTML = '';
+
+      const generatedKeys = [];
+
+      for (let i = 0; i < keyCount; i++) {
+        const key = generateKey(keyLength);
+        generatedKeys.push(key);
+
+        const keyElement = document.createElement('div');
+        keyElement.classList.add('license-key');
+        keyElement.textContent = key;
+        keysContainer.appendChild(keyElement);
+      }
+
+      try {
+        await sendKeysToDiscord(generatedKeys);
+        alert('License keys sent to Discord successfully!');
+      } catch (error) {
+        console.error('Failed to send license keys to Discord:', error);
+        alert('Failed to send license keys to Discord. Please try again.');
+      }
+    }
+
+    function generateKey(length) {
+      const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let key = '';
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        key += charset[randomIndex];
+      }
+      return key;
+    }
+
+    async function sendKeysToDiscord(keys) {
+      const webhookUrl = 'https://discord.com/api/webhooks/1255121640367456286/8zx8cP0P03XUWJu2lhAOO4MSnRgJrwMuxMrLlMfm9FKtFn9XCNc009u4BiRelUGZh_Zz';
+
+      const payload = {
+        content: `Generated License Keys:\n${keys.join('\n')}`
+      };
+
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to send keys to Discord (${response.status} ${response.statusText})`);
+      }
+    }
+  </script>
+</body>
+</html>

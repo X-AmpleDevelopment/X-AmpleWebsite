@@ -1,0 +1,18 @@
+.jumbotron {
+  background-image: url('/img/team/xample.png');
+  background-size: cover;
+  background-position: center;
+  color: #fff; /* Adjust text color to ensure readability */
+  text-align: center; /* Center-align text within the Jumbotron */
+  padding: 100px 0; /* Adjust padding as needed for spacing */
+}
+
+.jumbotron .container {
+  position: relative; /* Ensure the container behaves as expected */
+  z-index: 1; /* Ensure content is above the background image */
+}
+
+.jumbotron h1,
+.jumbotron p {
+  z-index: 1; /* Ensure text is above the background image */
+}

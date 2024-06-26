@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Protected Staff Area</title>
+    <!-- Bootstrap CSS (for styling the modal) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS (optional) -->
+    <style>
+        /* Optional custom styles */
+        .modal-content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar section -->
+    <ul class="navbar-nav mr-auto">
+        <!-- Staff Area with Modal Dialog Box -->
+        <li class="nav-item">
+            <a class="nav-link link text-white text-primary display-4" href="#" onclick="showPasswordModal()">Staff Area</a>
+        </li>
+    </ul>
+
+    <!-- Modal HTML -->
+    <div id="passwordModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="passwordForm" onsubmit="verifyPassword(event)">
+                    <div class="form-group">
+                        <label for="password">Enter Password:</label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (required for modal functionality) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        function showPasswordModal() {
+            $('#passwordModal').modal('show');
+        }
+
+        function verifyPassword(event) {
+            event.preventDefault();
+            var password = document.getElementById('password').value;
+            // Replace 'your_password' with your actual password
+            if (password === 'Yamool2003!') {
+                // Redirect to the desired webpage
+                window.location.href = '/pages/license-generator';
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>
